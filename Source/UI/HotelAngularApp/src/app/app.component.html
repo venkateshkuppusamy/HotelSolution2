@@ -1,0 +1,19 @@
+<header class="header">
+  <nav class="navbar navbar-expand-lg py-3">
+      <div class="container"><a routerLink="/welcome" class="navbar-brand text-uppercase font-weight-bold">Hotel Booking App</a>
+          <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
+      </div>
+      <div></div>
+      <div id="navbarSupportedContent" class="collapse navbar-collapse" >
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active"><a routerLink="/hotels" class="nav-link text-uppercase font-weight-bold">Hotels <span class="sr-only">(current)</span></a></li>
+            <li class="nav-item"><a routerLink="/welcome" class="nav-link text-uppercase font-weight-bold">About</a></li>
+            <li class="nav-item"><a routerLink="/welcome" class="nav-link text-uppercase font-weight-bold">Support</a></li>
+        </ul>
+    </div>
+  </nav>
+</header>
+
+<div class="container-fluid">
+       <router-outlet></router-outlet>
+</div>

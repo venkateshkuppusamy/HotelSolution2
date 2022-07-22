@@ -1,0 +1,87 @@
+<mat-drawer-container class="example-container" style="background-color:transparent;">
+    <mat-drawer appearance="fill" mode="side" opened style="padding: 15px;background-color: linen; border-radius:3px;">
+        <mat-form-field>
+            <mat-label>Search Hotel Name</mat-label>
+            <input matInput [(ngModel)]=hotelFilter.name>
+        </mat-form-field>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Select Rating</mat-label>
+                <mat-select placeholder="Select Rating" [(ngModel)]=hotelFilter.rating>
+                    <mat-option *ngFor="let rating of ratings" [value]=rating>
+                        {{rating}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Sort Hotels By</mat-label>
+                <mat-select placeholder="Sort Hotels By" [(ngModel)]=hotelFilter.sortField>
+                    <mat-option *ngFor="let column of sortColumns" [value]=column >
+                        {{column}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Sort Order</mat-label>
+                <mat-select placeholder="Sort Order" [(ngModel)]=hotelFilter.isSortDesc>
+                    <mat-option *ngFor="let order of sortOrder" [value]="order.value">
+                        {{order.key}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <button mat-stroked-button style="background-color:#91552b;color: white;" (click)="searchClickEvent()">Search</button>
+        <button mat-stroked-button style="margin-left: 5px; background-color:#91552b;color: white;" (click)="resetEvent()" >Reset</button>
+        
+    </mat-drawer>
+    <mat-drawer-content style="overflow: hidden;" >
+        <mat-paginator style="margin-left:15px; background-color:linen; border-radius: 3px;"  [length]=hotelWrapper.totalCount 
+        (page)="handlePage($event)"
+              [pageSize]=hotelWrapper.pageSize
+              [pageSizeOptions]="[5, 10, 15, 25]"
+              aria-label="Select page">
+        </mat-paginator>
+        <div class="row" style="margin-left:0px;min-height: 400px;">
+            <div class="col-sm-4" *ngFor="let item of gridData">
+                <div class="card-wrapper" style="margin-top: 5px;">
+                    <mat-card class="hotel-card" style="background-color:linen">
+                        <h4>Hotel Name</h4>
+                        <mat-card-subtitle style="margin-bottom: 0px;">
+                            {{item.name}}
+                        </mat-card-subtitle>
+
+                        <mat-divider></mat-divider>
+                        <mat-card-content style="margin-top: 10px;">
+                            <h5>Description</h5>
+                            <mat-card-subtitle>
+                                {{item.description}}
+                            </mat-card-subtitle>
+                            <div style="display: flex; flex-flow: row;">
+                                <div>
+                                    <h6>Location</h6>
+                                    <mat-card-subtitle>
+                                        {{item.location}}
+                                    </mat-card-subtitle>
+                                </div>
+                                <div style="margin-left:15%;">
+                                    <h6>Rating</h6>
+                                    <mat-card-subtitle style="margin-bottom: 0px;">
+                                        {{item.rating}}
+                                    </mat-card-subtitle>
+                                </div>
+                            </div>
+
+
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>
+
